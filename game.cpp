@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "definedValues.hpp"
 
 
 using namespace std;
@@ -71,6 +72,21 @@ howManyLetters(0), duplicatedAllowed(false) {
 
 Game::~Game() {}
 
+void Game::Score(const char *thisGuess, int *correct, int *position) {
+	correct = 0;
+	position = 0;
+	for (int i = 0; i < howManyLetters; i++) {
+		int howManyInGuess = howMany(thisGuess, alpha[i]);
+		int howManyInAnswer = howMany(solution, alpha[i]);
+		correct += howManyInGuess < howManyInAnswer ? howManyInGuess : howManyInAnswer;
+	}
+	for (int j = 0; j < howManyPositions; j++) {
+		if (thisGuess[j] == solution[j]) {
+			position++;
+		}
+	}
+}
+
 void Game::Play() {
 	char guess[80];
 	int correct = 0;
@@ -82,7 +98,7 @@ void Game::Play() {
 	cout << "seu palpite: ";
 
 	Display(guess);
-	Score(&correct, &position);
+	Score(guess, &correct, &position);
 
 	cout << "\t\t" << correct << " correct, " << position << " in position." << endl;
 }
