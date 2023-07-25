@@ -72,5 +72,17 @@ howManyLetters(0), duplicatedAllowed(false) {
 Game::~Game() {}
 
 void Game::Play() {
-	// code
+	char guess[80];
+	int correct = 0;
+	int position = 0;
+
+	//...
+
+	cout << endl;
+	cout << "seu palpite: ";
+
+	Display(guess);
+	Score(guess, correct, position);
+
+	cout << "\t\t" << correct << " correct, " << position << " in position." << endl;
 }
