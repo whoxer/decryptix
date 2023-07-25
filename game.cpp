@@ -82,7 +82,7 @@ void Game::Play() {
 	cout << "seu palpite: ";
 
 	Display(guess);
-	Score(guess, correct, position);
+	Score(&correct, &position);
 
 	cout << "\t\t" << correct << " correct, " << position << " in position." << endl;
 }
