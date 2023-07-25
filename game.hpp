@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+
 #include "definedValues.hpp"
 
 using namespace std;
@@ -17,7 +18,7 @@ class Game {
         const char *GetSolution() const {
             return solution;
         }
-        void Score(int *correct, int *position);
+        void Score(int *ptr_correct, int *ptr_position);
     private:
         int howMany(const char *, char);
         char solution[maxPos];
