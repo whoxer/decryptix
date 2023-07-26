@@ -8,8 +8,8 @@ Game::Game():round(1), howManyPositions(0),
 howManyLetters(0), duplicatedAllowed(false) {
 
     enum BoundedValues {
-        minPos = 2,
         maxPos = 10,
+        minPos = 2,
         minLetters = 2,
         maxLetters = 26
     };
@@ -72,6 +72,14 @@ howManyLetters(0), duplicatedAllowed(false) {
 
 Game::~Game() {}
 
+inline int Game::howMany(const char *theString, char c) {
+	int count = 0;
+	for (int i = 0; i < strlen(theString); i++) {
+		if (theString[i] == c) 
+			count++;
+	}
+	return count;
+}
 void Game::Score(const char *thisGuess, int *correct, int *position) {
 	correct = 0;
 	position = 0;
@@ -86,7 +94,6 @@ void Game::Score(const char *thisGuess, int *correct, int *position) {
 		}
 	}
 }
-
 void Game::Play() {
 	char guess[80];
 	int correct = 0;

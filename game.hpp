@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+#include <cstring>
 
 #include "definedValues.hpp"
 
@@ -19,8 +20,8 @@ class Game {
             return solution;
         }
         void Score(const char *thisGuess, int *correct, int *position);
+        inline int howMany(const char *theString, char c);
     private:
-        int howMany(const char *, char);
         char solution[maxPos];
         bool duplicatedAllowed;
         int howManyLetters;
