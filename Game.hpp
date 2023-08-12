@@ -15,9 +15,9 @@ class Game {
         }
         void Play();
         const char *GetSolution() const { return solution; }
+	    inline int HowMany(const char *, char);
         void Score(const char *thisGuess, int &correct, int &position);
     private:
-	int HowMany(const char *, char);
         char solution[maxPos + 1];
         int howManyLetters;
         int howManyPositions;
