@@ -4,9 +4,7 @@
 #include <iostream>
 #include <cstring>
 
-#include "definedValues.hpp"
-
-using namespace std;
+#include "Def.hpp"
 
 class Game {
     public:
@@ -16,16 +14,14 @@ class Game {
             cout << charArray << endl;
         }
         void Play();
-        const char *GetSolution() const {
-            return solution;
-        }
-        void Score(const char *thisGuess, int *correct, int *position);
-        inline int howMany(const char *theString, char c);
+        const char *GetSolution() const { return solution; }
+        void Score(const char *thisGuess, int &correct, int &position);
     private:
-        char solution[maxPos];
-        bool duplicatedAllowed;
+	int HowMany(const char *, char);
+        char solution[maxPos + 1];
         int howManyLetters;
         int howManyPositions;
+        bool duplicates;
         int round;
 };
 
