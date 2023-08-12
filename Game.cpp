@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Def.hpp"
 
 using namespace std;
 
@@ -10,10 +11,6 @@ howManyLetters(0), duplicates(false) {
     while(!valid) {
         while (howManyLetters < minLetters ||
 	       howManyLetters > maxLetters) {
-			cout << "< Decryptix - v0.5.14 >" << endl;
-			cout << "> Há duas maneiras de jogar Decryptix: ";
-			cout << "você pode adivinhar um padrão que eu criar ou criar o seu padrão." << endl;
-
 			cout << "quantas letras? (";
 			cout << minLetters << "-" << maxLetters << "): ";
 			cin >> howManyLetters;
@@ -77,13 +74,13 @@ howManyLetters(0), duplicates(false) {
 		solution[i] = c;
 		i++;
 	}
-	solution[i] = '\0';
-    }
+		solution[i] = '\0';
+	}
 }
 
 Game::~Game() {}
 
-void Game::Score(const char *thisGuess, int & > correct, int & > position) {
+void Game::Score(const char *thisGuess, int &correct, int &position) {
 	correct = 0;
 	position = 0;
 
@@ -91,8 +88,8 @@ void Game::Score(const char *thisGuess, int & > correct, int & > position) {
 	ASSERT(strlen(solution) == howManyPositions);
 
 	for (int i = 0; i < howManyLetters; i++) {
-		int howManyInGuess = howMany(thisGuess, alpha[i]);
-		int howManyInAnswer = howMany(solution, alpha[i]);
+		int howManyInGuess = HowMany(thisGuess, alpha[i]);
+		int howManyInAnswer = HowMany(solution, alpha[i]);
 		correct += howManyInGuess < howManyInAnswer ? howManyInGuess : howManyInAnswer;
 	}
 	for (int j = 0; j < howManyPositions; j++) {
@@ -106,15 +103,50 @@ void Game::Play() {
 	char guess[80];
 	int correct = 0;
 	int position = 0;
+	bool quit = false;
+	
+	while (position < howManyPositions) {
+		cout << "\nrodada " << round  << ". Insira ";
+		cout << howManyPositions << " letras entre ";
+		cout << alpha[0] << " e ";
+		cout << alpha[howManyLetters - 1] << ": ";
 
-	//...
+		cin >> guess;
 
-	cout << endl;
-	cout << "seu palpite: ";
+		if (strlen(guess) != howManyPositions) {
+			cout << "\n ** Por favor insira exatamente ";
+			cout << howManyPositions << " letras. **\n";
+			continue;
+		}
 
-	Display(guess);
-	Score(guess, &correct, &position);
+		round++;
 
-	cout << "\t\t" << correct << " correct, " << position << " in position." << endl;
+		cout << "\nseu palpite: ";
+		Display(guess);
+		Score(guess, correct, position);
+		cout << "\t\t" << correct << " correto,";
+		cout << " na posição " << position << endl;
+	}
+
+	cout << "\n\nParabéns! isso levou";
+
+	if (round <= 6) {
+		cout << "apenas ";
+	}
+
+	if (round - 1 == 1) {
+		cout << "uma rodada!" << endl;
+	} else {
+		cout << round - 1 << " rodadas" << endl;		
+	}
+
+	// cout << "\t\t" << correct << " correct, " << position << " in position." << endl;
 }
-
+inline int Game::HowMany(const char *theString, char c) {
+	int count = 0;
+	for (int i = 0; i < strlen(theString); i++) {
+		if (theString[i] == c)
+			count++;
+	}	
+	return count;
+}
