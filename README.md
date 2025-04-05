@@ -71,7 +71,7 @@ Para este projeto estou utilizando o Visual Studio Code com algumas configura√ß√
 3. tasks.json
 
 
-```
+```json
 {
     "version": "2.0.0",
     "tasks": [
