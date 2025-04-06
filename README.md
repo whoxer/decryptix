@@ -4,15 +4,16 @@ Jogo de decodificação de padrões pseudoaleatórios. O *Decriptyx* é um proje
 
 ###### Requisitos para compilação
 
-	1. C++98
-	2. G++ Compiler
-	3. Makefile
+1. C++98
+2. G++ Compiler
+3. Makefile
 	
 ## Configurações de ambiente
 
 Para este projeto estou utilizando o Visual Studio Code com algumas configurações especiais no diretório ``.vscode``, não é obrigatório então apenas faça se souber o que está fazendo. As configurações são as que seguem:
 
 1. c_cpp_properties.json
+
 ```json
 
 {
@@ -38,6 +39,7 @@ Para este projeto estou utilizando o Visual Studio Code com algumas configuraç�
 ```
 
 2. launch.json
+
 ```json
 
 {
