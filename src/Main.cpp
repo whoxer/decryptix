@@ -4,7 +4,7 @@ int main()
 {
     
     cout << "Decryptix - (C)Copyright 1999 Liberty" << endl;
-    cout << "Associates, Inc. Versio 0.3\n\n" << endl;
+    cout << "Associates, Inc. Version 0.3\n\n" << endl;
     
     bool playAgain = true;
 

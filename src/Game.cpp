@@ -151,7 +151,7 @@ void Game::Play()
 
 		Score(guess, correct, position);
 		cout << "\t\t" << correct << " correct,";
-		cout << " in position " << position << endl;
+		cout << position << " in position " << endl;
 	}
 
 	cout << "\n\nCongratulations! It took you ";
